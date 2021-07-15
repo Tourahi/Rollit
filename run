@@ -4,3 +4,4 @@ moonc .
 love .
 find ./src -type f -name '*.lua' -delete
 rm main.lua
+rm conf.lua
