@@ -21,6 +21,16 @@ main.create = (loveF, centerArea) ->
     \SetSize promptFormW, promptFormH
     \SetPos promptFormX, promptFormY
     \SetLayoutType "vertical"
+  logClist = loveF.Create "columnlist", main
+  with logClist
+    \SetPos promptFormX, promptFormY
+    \SetSize promptFormW, promptFormH
+    \SetDefaultColumnWidth promptFormW
+    \AddColumn "Logs"
+    \AddRow "Rolled 1 D20 +cha(0): 17  |  Rolls: 17"
+    \AddRow "Rolled 1 D12 +cha(0): 5  |  Rolls: 5"
+    \SetRowFont Graphics.newFont(15), 1
+
 
   -- Character
   characterForm = loveF.Create "form", main
@@ -31,8 +41,15 @@ main.create = (loveF, centerArea) ->
     \SetLayoutType "horizontal"
   characterChoices = loveF.Create "multichoice", main
   with characterChoices
+    \SetPos centerArea[1] + 65, centerArea[2] + 15
+    \SetSize 165, 30
+  addCharBtn = loveF.Create "imagebutton", main
+  with addCharBtn
+    \SetText ""
+    \SetImage "res/add.png"
+    \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 15
-    \SetSize 215, 30
+
 
   -- Die Type
   dieForm = loveF.Create "form", main
