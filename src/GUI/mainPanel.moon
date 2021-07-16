@@ -1,4 +1,4 @@
-
+loader = assert require 'src/DataLoaders'
 main = {}
 
 main.create = (loveF, centerArea) ->
@@ -35,6 +35,7 @@ main.create = (loveF, centerArea) ->
     \SetAllRowsFont Graphics.newFont(15)
 
 
+
   -- Character
   characterForm = loveF.Create "form", main
   with characterForm
@@ -46,12 +47,17 @@ main.create = (loveF, centerArea) ->
   with characterChoices
     \SetPos centerArea[1] + 65, centerArea[2] + 15
     \SetSize 165, 30
+    \SetChoice "Choose a character"
   addCharBtn = loveF.Create "imagebutton", main
   with addCharBtn
     \SetText ""
     \SetImage "res/add.png"
     \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 15
+  loader.loadMultichoice characterChoices, Data.characters
+
+
+
 
 
   -- Die Type
@@ -65,11 +71,14 @@ main.create = (loveF, centerArea) ->
   with dieType
     \SetPos centerArea[1] + 65, centerArea[2] + 75
     \SetSize 165, 30
+    \SetChoice "Choose a die"
   dieImage = loveF.Create "image", main
   with dieImage
     \SetImage "res/default.png"
     \SetPos centerArea[1] + 15, centerArea[2] + 75
     \SetSize 45, 30
+  loader.loadMultichoice dieType, Data.dieTypes
+
 
   -- Number of Dices
   dieFromN = loveF.Create "form", main
@@ -97,13 +106,26 @@ main.create = (loveF, centerArea) ->
     \SetLayoutType "horizontal"
   attribPrim = loveF.Create "multichoice", main
   with attribPrim
+    \SetPos centerArea[1] + 70, centerArea[2] + 200
+    \SetSize 160, 30
+    \SetChoice "Select an attribute"
+  loader.loadMultichoice attribPrim, Data.attribsPrim
+  modifP = loveF.Create "numberbox", main
+  with modifP
+    \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 200
-    \SetSize 215, 30
+
 
   attribSec = loveF.Create "multichoice", main
   with attribSec
+    \SetPos centerArea[1] + 70, centerArea[2] + 240
+    \SetSize 160, 30
+    \SetChoice "Select an attribute"
+  loader.loadMultichoice attribSec, Data.attribsSec
+  modifS = loveF.Create "numberbox", main
+  with modifS
+    \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 240
-    \SetSize 215, 30
 
 
   -- Modifier

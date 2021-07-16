@@ -1,5 +1,5 @@
 StateMachine = assert require 'src/StateMachine'
-M = assert require "moon"
+M = assert require 'moon'
 
 export Dump = M.p
 
@@ -8,6 +8,7 @@ export Window = love.window
 export Keyboard = love.keyboard
 
 assert require 'src/colors'
+assert require 'src/Data'
 
 --States
 DebugState = assert require 'src/states/DebugState'

@@ -2,7 +2,7 @@
 toolbox = {}
 
 toolbox.create = (loveF,width) ->
-
+  loveF.SetActiveSkin "Dark blue"
   panel = loveF.Create "panel"
   width = Graphics.getWidth!
   height = Graphics.getHeight!
