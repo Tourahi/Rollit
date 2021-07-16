@@ -2,11 +2,13 @@
 toolbox = {}
 
 toolbox.create = (loveF,width) ->
+
   panel = loveF.Create "panel"
   width = Graphics.getWidth!
+  height = Graphics.getHeight!
   with panel
     \SetPos 0, 0
-    \SetSize width, width
+    \SetSize width, 35
 
   info = loveF.Create "text", panel
   with info
@@ -28,6 +30,9 @@ toolbox.create = (loveF,width) ->
   for _, v in pairs loveF.skins
     themesList\AddChoice v.name
   themesList\Sort!
+
+
+
 
 
 toolbox

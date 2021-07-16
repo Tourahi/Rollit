@@ -4,7 +4,7 @@ with love
     t.author = "Tourahi"
     t.version = "11.3"
     t.window.width = 800
-    t.window.height = 600
+    t.window.height = 450
     t.console           = true
     t.modules.joystick  = false
     t.modules.audio     = true
