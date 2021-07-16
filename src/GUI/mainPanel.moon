@@ -64,6 +64,7 @@ main.create = (loveF, centerArea) ->
     \SetSize 215, 30
     \SetMin 0
     \SetMax 1000
+    .canmodify = true
 
 
 
@@ -96,6 +97,7 @@ main.create = (loveF, centerArea) ->
   with numberboxModi
     \SetPos centerArea[1] + 15, centerArea[2] + 305
     \SetSize 215, 30
+    .canmodify = true
 
   -- Settings
   settingsBtn = loveF.Create "imagebutton", main
