@@ -962,27 +962,6 @@ function newobject:SizeColumnToData(columnid)
 end
 
 --[[---------------------------------------------------------
-	- func: SetRowsFont(font)
-	- desc: sets the font of the rows.
---]]---------------------------------------------------------
-function newobject:SetRowsFont(font)
-	local list = self.internals[1]
-  for k, v in ipairs(list.children) do
-    v:SetFont(font)
-  end
-end
-
---[[---------------------------------------------------------
-	- func: SetRowFont(font, id)
-	- desc: sets the font of the row with the provided id.
---]]---------------------------------------------------------
-function newobject:SetRowFont(font, id)
-	local list = self.internals[1]
-  assert( id >= 1, "The id must be >= 1")
-  list.children[id]:SetFont(font)
-end
-
---[[---------------------------------------------------------
 	- func: SetColumnOrder(curid, newid)
 	- desc: sets the order of the specified column
 --]]---------------------------------------------------------
@@ -999,6 +978,27 @@ function newobject:SetColumnOrder(curid, newid)
 
 	return self
 
+end
+
+--[[---------------------------------------------------------
+	- func: SetRowsFont(font)
+	- desc: sets the font of the rows.
+--]]---------------------------------------------------------
+function newobject:SetAllRowsFont(font)
+	local list = self.internals[1]
+  for k, v in ipairs(list.children) do
+    v:SetFont(font)
+  end
+end
+
+--[[---------------------------------------------------------
+	- func: SetRowFont(font, id)
+	- desc: sets the font of the row with the provided id.
+--]]---------------------------------------------------------
+function newobject:SetRowFont(font, id)
+	local list = self.internals[1]
+  assert( id >= 1, "The id must be >= 1")
+  list.children[id]:SetFont(font)
 end
 
 ---------- module end ----------

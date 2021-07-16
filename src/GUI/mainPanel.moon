@@ -27,9 +27,12 @@ main.create = (loveF, centerArea) ->
     \SetSize promptFormW, promptFormH
     \SetDefaultColumnWidth promptFormW
     \AddColumn "Logs"
-    \AddRow "Rolled 1 D20 +cha(0): 17  |  Rolls: 17"
-    \AddRow "Rolled 1 D12 +cha(0): 5  |  Rolls: 5"
-    \SetRowFont Graphics.newFont(15), 1
+    \AddColumn "Result"
+    \SetColumnWidth 1, 448
+    \SetColumnWidth 2, 100
+    \AddRow "Rolled 1 D20 +cha(0) ", "17"
+    \AddRow "Rolled 1 D12 +cha(0) ", "5"
+    \SetAllRowsFont Graphics.newFont(15)
 
 
   -- Character
