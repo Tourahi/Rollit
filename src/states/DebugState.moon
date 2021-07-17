@@ -8,4 +8,4 @@ class DebugState extends BaseState
     @toolBoxWidth = 35
     @mainCenterArea = {0, 10, Graphics.getWidth!, Graphics.getHeight! - @toolBoxWidth}
     toolbox.create @loveF, @toolBoxWidth
-    main.create @loveF, @mainCenterArea
+    main\create @loveF, @mainCenterArea

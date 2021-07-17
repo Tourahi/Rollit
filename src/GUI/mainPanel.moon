@@ -1,10 +1,12 @@
 loader = assert require 'src/DataLoaders'
+Rollit = assert require 'src/Roll'
 main = {}
 
 --
 addCharacter = assert require 'src/GUI/addCharacter'
 
-main.create = (loveF, centerArea) ->
+
+main.create = (self,loveF, centerArea) ->
   main = loveF.Create "panel"
   width = Graphics.getWidth!
   height = Graphics.getHeight!
@@ -46,8 +48,8 @@ main.create = (loveF, centerArea) ->
     \SetSize 225, 50
     \SetPos centerArea[1] + 10, centerArea[2]
     \SetLayoutType "horizontal"
-  characterChoices = loveF.Create "multichoice", main
-  with characterChoices
+  self.characterChoices = loveF.Create "multichoice", main
+  with self.characterChoices
     \SetPos centerArea[1] + 65, centerArea[2] + 15
     \SetSize 165, 30
     \SetChoice "Choose a character"
@@ -57,9 +59,9 @@ main.create = (loveF, centerArea) ->
     \SetImage "res/add.png"
     \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 15
-  loader.loadMultichoice characterChoices, Data.characters
+  loader.loadMultichoice self.characterChoices, Data.characters
   addCharBtn.OnClick = (obj, x, y) ->
-    addCharacter loveF, centerArea, characterChoices
+    addCharacter loveF, centerArea, self.characterChoices
 
 
 
@@ -72,8 +74,8 @@ main.create = (loveF, centerArea) ->
     \SetSize 225, 50
     \SetPos centerArea[1] + 10, centerArea[2] + 60
     \SetLayoutType "horizontal"
-  dieType = loveF.Create "multichoice", main
-  with dieType
+  self.dieType = loveF.Create "multichoice", main
+  with self.dieType
     \SetPos centerArea[1] + 65, centerArea[2] + 75
     \SetSize 165, 30
     \SetChoice "Choose a die"
@@ -82,7 +84,7 @@ main.create = (loveF, centerArea) ->
     \SetImage "res/die.png"
     \SetPos centerArea[1] + 15, centerArea[2] + 75
     \SetSize 45, 30
-  loader.loadMultichoice dieType, Data.dieTypes
+  loader.loadMultichoice self.dieType, Data.dieTypes
 
 
   -- Number of Dices
@@ -92,8 +94,8 @@ main.create = (loveF, centerArea) ->
     \SetSize 225, 50
     \SetPos centerArea[1] + 10, centerArea[2] + 120
     \SetLayoutType "horizontal"
-  numberbox = loveF.Create "numberbox", main
-  with numberbox
+  self.numberboxD = loveF.Create "numberbox", main
+  with self.numberboxD
     \SetPos centerArea[1] + 15, centerArea[2] + 135
     \SetSize 215, 30
     \SetMin 0
@@ -109,26 +111,26 @@ main.create = (loveF, centerArea) ->
     \SetSize 225, 100
     \SetPos centerArea[1] + 10, centerArea[2] + 180
     \SetLayoutType "horizontal"
-  attribPrim = loveF.Create "multichoice", main
-  with attribPrim
+  self.attribPrim = loveF.Create "multichoice", main
+  with self.attribPrim
     \SetPos centerArea[1] + 70, centerArea[2] + 200
     \SetSize 160, 30
     \SetChoice "Select an attribute"
-  loader.loadMultichoice attribPrim, Data.attribsPrim
-  modifP = loveF.Create "numberbox", main
-  with modifP
+  loader.loadMultichoice self.attribPrim, Data.attribsPrim
+  self.modifP = loveF.Create "numberbox", main
+  with self.modifP
     \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 200
 
 
-  attribSec = loveF.Create "multichoice", main
-  with attribSec
+  self.attribSec = loveF.Create "multichoice", main
+  with self.attribSec
     \SetPos centerArea[1] + 70, centerArea[2] + 240
     \SetSize 160, 30
     \SetChoice "Select an attribute"
-  loader.loadMultichoice attribSec, Data.attribsSec
-  modifS = loveF.Create "numberbox", main
-  with modifS
+  loader.loadMultichoice self.attribSec, Data.attribsSec
+  self.modifS = loveF.Create "numberbox", main
+  with self.modifS
     \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 240
 
@@ -140,8 +142,8 @@ main.create = (loveF, centerArea) ->
     \SetSize 225, 50
     \SetPos centerArea[1] + 10, centerArea[2] + 290
     \SetLayoutType "horizontal"
-  numberboxModi = loveF.Create "numberbox", main
-  with numberboxModi
+  self.numberboxModi = loveF.Create "numberbox", main
+  with self.numberboxModi
     \SetPos centerArea[1] + 15, centerArea[2] + 305
     \SetSize 215, 30
     .canmodify = true
@@ -160,7 +162,8 @@ main.create = (loveF, centerArea) ->
     \SetText "Roll"
     \SetSize 175, 30
     \SetPos centerArea[1] + 60, centerArea[2] + 360
-
+    .OnClick = (objs) ->
+      Rollit self
 
 
 
