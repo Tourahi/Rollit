@@ -3,6 +3,7 @@ export Data = {
     "Default"
   },
   dieTypes: {
+    "None",
     "D4",
     "D6",
     "D8",
@@ -12,6 +13,7 @@ export Data = {
     "D100"
   },
   attribsPrim: {
+    "None",
     "Strength",
     "Dexterity",
     "Constitution",
@@ -20,6 +22,7 @@ export Data = {
     "Charisma"
   },
   attribsSec: {
+    "None",
     "Initiative",
     "Proficiency",
     "Spell Attack",

@@ -26,8 +26,8 @@ main.create = (self,loveF, centerArea) ->
     \SetSize promptFormW, promptFormH
     \SetPos promptFormX, promptFormY
     \SetLayoutType "vertical"
-  logClist = loveF.Create "columnlist", main
-  with logClist
+  self.logClist = loveF.Create "columnlist", main
+  with self.logClist
     \SetPos promptFormX, promptFormY
     \SetSize promptFormW, promptFormH
     \SetDefaultColumnWidth promptFormW
@@ -35,8 +35,6 @@ main.create = (self,loveF, centerArea) ->
     \AddColumn "Result"
     \SetColumnWidth 1, 448
     \SetColumnWidth 2, 100
-    \AddRow "Rolled 1 D20 +cha(0) ", "17"
-    \AddRow "Rolled 1 D12 +cha(0) ", "5"
     \SetAllRowsFont Graphics.newFont(15)
 
 
@@ -98,15 +96,15 @@ main.create = (self,loveF, centerArea) ->
   with self.numberboxD
     \SetPos centerArea[1] + 15, centerArea[2] + 135
     \SetSize 215, 30
-    \SetMin 0
+    \SetMin 1
     \SetMax 1000
     .canmodify = true
 
 
 
   -- Attributes
-  dieForm = loveF.Create "form", main
-  with dieForm
+  pAttribForm = loveF.Create "form", main
+  with pAttribForm
     \SetName "Attributes"
     \SetSize 225, 100
     \SetPos centerArea[1] + 10, centerArea[2] + 180
@@ -163,7 +161,7 @@ main.create = (self,loveF, centerArea) ->
     \SetSize 175, 30
     \SetPos centerArea[1] + 60, centerArea[2] + 360
     .OnClick = (objs) ->
-      Rollit self
+      Rollit self, loveF, centerArea
 
 
 
