@@ -10,6 +10,9 @@ export Keyboard = love.keyboard
 assert require 'src/colors'
 assert require 'src/Data'
 
+die = assert require 'src/Die'
+export Die = die!
+
 --States
 DebugState = assert require 'src/states/DebugState'
 

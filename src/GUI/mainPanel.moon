@@ -10,6 +10,7 @@ main.create = (self,loveF, centerArea) ->
   main = loveF.Create "panel"
   width = Graphics.getWidth!
   height = Graphics.getHeight!
+  loveF.addCharFlag = false
   with main
     \SetPos 0, 35
     \SetSize width, height - 35
