@@ -36,6 +36,9 @@ with love
 
   .keyreleased = (key) ->
     loveframes.keyreleased key
+    if key == "f1"
+      debug = loveframes.config["DEBUG"]
+      loveframes.config["DEBUG"] = not debug
 
   .textinput = (text) ->
     loveframes.textinput text

@@ -1,6 +1,9 @@
 loader = assert require 'src/DataLoaders'
 main = {}
 
+--
+addCharacter = assert require 'src/GUI/addCharacter'
+
 main.create = (loveF, centerArea) ->
   main = loveF.Create "panel"
   width = Graphics.getWidth!
@@ -55,6 +58,8 @@ main.create = (loveF, centerArea) ->
     \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 15
   loader.loadMultichoice characterChoices, Data.characters
+  addCharBtn.OnClick = (obj, x, y) ->
+    addCharacter loveF, centerArea, characterChoices
 
 
 
@@ -74,7 +79,7 @@ main.create = (loveF, centerArea) ->
     \SetChoice "Choose a die"
   dieImage = loveF.Create "image", main
   with dieImage
-    \SetImage "res/default.png"
+    \SetImage "res/die.png"
     \SetPos centerArea[1] + 15, centerArea[2] + 75
     \SetSize 45, 30
   loader.loadMultichoice dieType, Data.dieTypes

@@ -1,5 +1,3 @@
-
-
 export Data = {
   characters: {
     "Default"
@@ -10,7 +8,8 @@ export Data = {
     "D8",
     "D10",
     "D12",
-    "D20"
+    "D20",
+    "D100"
   },
   attribsPrim: {
     "Strength",
@@ -27,5 +26,7 @@ export Data = {
     "Expertise"
   }
 }
+
+
 
 
