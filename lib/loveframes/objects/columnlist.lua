@@ -37,6 +37,7 @@ function newobject:initialize()
 	self.OnRowSelected = nil
 	self.OnScroll = nil
 
+
 	local list = loveframes.objects["columnlistarea"]:new(self)
 	table.insert(self.internals, list)
 
@@ -429,7 +430,7 @@ function newobject:SetAutoScroll(bool)
 	local internals = self.internals
 	local list = internals[1]
 	local scrollbar = list:GetScrollBar()
-
+  print(scrollbar)
 	self.autoscroll = bool
 
 	if list then
@@ -443,12 +444,32 @@ function newobject:SetAutoScroll(bool)
 end
 
 --[[---------------------------------------------------------
+	- func: GetScrollBar(bool)
+	- desc: gets the scroll bar attached to the columnlist
+--]]---------------------------------------------------------
+function newobject:GetScrollBar()
+  return self.internals[1]:GetScrollBar()
+end
+
+function newobject:SetHbarEnabled(bool)
+
+  local list = self.internals[1]
+  local scrollbar = list:GetScrollBar()
+
+  if list then
+    if scrollbar then
+      list:SetHbarEnabled(bool)
+    end
+  end
+end
+
+
+--[[---------------------------------------------------------
 	- func: SetButtonScrollAmount(speed)
 	- desc: sets the scroll amount of the object's scrollbar
 			buttons
 --]]---------------------------------------------------------
 function newobject:SetButtonScrollAmount(amount)
-
 	self.buttonscrollamount = amount
 	self.internals[1].buttonscrollamount = amount
 	return self

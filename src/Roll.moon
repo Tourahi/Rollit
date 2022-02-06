@@ -40,7 +40,8 @@ Rollit = (inputs, loveF, centerArea) ->
   for i = 1, numberOfDices
     res += Die\roll dieType
 
-  inputs.logClist\AddRow logStr, res
+
+  inputs.logClist\AddRow logStr, "        "..res
   inputs.logClist\SetAllRowsFont Graphics.newFont(15)
 
 Rollit

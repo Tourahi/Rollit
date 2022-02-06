@@ -14,7 +14,7 @@ local newobject = loveframes.NewObject("scrollbody", "loveframes_object_scrollbo
 	- desc: initializes the object
 --]]---------------------------------------------------------
 function newobject:initialize(parent, bartype)
-	
+
 	self.type = "scrollbody"
 	self.bartype = bartype
 	self.parent = parent
@@ -22,7 +22,7 @@ function newobject:initialize(parent, bartype)
 	self.y = 0
 	self.internal = true
 	self.internals = {}
-	
+
 	if self.bartype == "vertical" then
 		self.width = 16
 		self.height = self.parent.height
@@ -34,12 +34,12 @@ function newobject:initialize(parent, bartype)
 		self.staticx = 0
 		self.staticy = self.parent.height - self.height
 	end
-	
+
 	table.insert(self.internals, loveframes.objects["scrollarea"]:new(self, bartype))
-	
+
 	local bar = self.internals[1].internals[1]
-	
-	if self.bartype == "vertical" then 
+
+	if self.bartype == "vertical" then
 		local upbutton = loveframes.objects["scrollbutton"]:new("up")
 		upbutton.staticx = 0 + self.width - upbutton.width
 		upbutton.staticy = 0
@@ -118,10 +118,10 @@ function newobject:initialize(parent, bartype)
 		table.insert(self.internals, leftbutton)
 		table.insert(self.internals, rightbutton)
 	end
-	
+
 	local parentstate = parent.state
 	self:SetState(parentstate)
-	
+
 	-- apply template properties to the object
 	loveframes.ApplyTemplatesToObject(self)
 	self:SetDrawFunc()
@@ -132,29 +132,29 @@ end
 	- desc: updates the object
 --]]---------------------------------------------------------
 function newobject:update(dt)
-	
+
 	local visible = self.visible
 	local alwaysupdate = self.alwaysupdate
-	
+
 	if not visible then
 		if not alwaysupdate then
 			return
 		end
 	end
-	
+
 	self:CheckHover()
-	
+
 	local parent = self.parent
 	local base = loveframes.base
 	local update = self.Update
 	local internals = self.internals
-	
+
 	-- move to parent if there is a parent
 	if parent ~= base then
 		self.x = parent.x + self.staticx
 		self.y = parent.y + self.staticy
 	end
-	
+
 	-- resize to parent
 	if parent ~= base then
 		if self.bartype == "vertical" then
@@ -167,15 +167,15 @@ function newobject:update(dt)
 			if parent.vbar then self.width = self.width - parent:GetVerticalScrollBody().width end
 		end
 	end
-	
+
 	for k, v in ipairs(internals) do
 		v:update(dt)
 	end
-	
+
 	if update then
 		update(self, dt)
 	end
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -185,7 +185,7 @@ end
 function newobject:GetScrollBar()
 
 	return self.internals[1].internals[1]
-	
+
 end
 
 ---------- module end ----------

@@ -8,6 +8,7 @@ addCharacter = assert require 'src/GUI/addCharacter'
 
 main.create = (self,loveF, centerArea) ->
   main = loveF.Create "panel"
+  Main = self
   width = Graphics.getWidth!
   height = Graphics.getHeight!
   loveF.addCharFlag = false
@@ -37,7 +38,8 @@ main.create = (self,loveF, centerArea) ->
     \SetColumnWidth 1, 448
     \SetColumnWidth 2, 100
     \SetAllRowsFont Graphics.newFont(15)
-
+    \SetAutoScroll true
+    \SetHbarEnabled false
 
 
   -- Character
@@ -112,25 +114,25 @@ main.create = (self,loveF, centerArea) ->
     \SetLayoutType "horizontal"
   self.attribPrim = loveF.Create "multichoice", main
   with self.attribPrim
-    \SetPos centerArea[1] + 70, centerArea[2] + 200
-    \SetSize 160, 30
+    \SetPos centerArea[1] + 75, centerArea[2] + 200
+    \SetSize 155, 30
     \SetChoice "Select an attribute"
   loader.loadMultichoice self.attribPrim, Data.attribsPrim
   self.modifP = loveF.Create "numberbox", main
   with self.modifP
-    \SetSize 45, 30
+    \SetSize 55, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 200
 
 
   self.attribSec = loveF.Create "multichoice", main
   with self.attribSec
-    \SetPos centerArea[1] + 70, centerArea[2] + 240
-    \SetSize 160, 30
+    \SetPos centerArea[1] + 75, centerArea[2] + 240
+    \SetSize 155, 30
     \SetChoice "Select an attribute"
   loader.loadMultichoice self.attribSec, Data.attribsSec
   self.modifS = loveF.Create "numberbox", main
   with self.modifS
-    \SetSize 45, 30
+    \SetSize 55, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 240
 
 
@@ -148,13 +150,13 @@ main.create = (self,loveF, centerArea) ->
     .canmodify = true
 
   -- Settings
-  settingsBtn = loveF.Create "imagebutton", main
-  with settingsBtn
-    \SetImage "res/settings.png"
+  clearBtn = loveF.Create "button", main
+  with clearBtn
+    \SetText "Clear"
     \SetSize 45, 30
     \SetPos centerArea[1] + 10, centerArea[2] + 360
-    \SizeToImage!
-    \SetText ""
+    .OnClick = (objs) ->
+      self.logClist\Clear!
 
   rollBtn = loveF.Create "button", main
   with rollBtn
@@ -163,6 +165,7 @@ main.create = (self,loveF, centerArea) ->
     \SetPos centerArea[1] + 60, centerArea[2] + 360
     .OnClick = (objs) ->
       Rollit self, loveF, centerArea
+
 
 
 
