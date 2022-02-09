@@ -430,7 +430,7 @@ function newobject:SetAutoScroll(bool)
 	local internals = self.internals
 	local list = internals[1]
 	local scrollbar = list:GetScrollBar()
-  print(scrollbar)
+
 	self.autoscroll = bool
 
 	if list then

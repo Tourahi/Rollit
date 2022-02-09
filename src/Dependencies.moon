@@ -1,7 +1,4 @@
 StateMachine = assert require 'src/StateMachine'
-M = assert require 'moon'
-
-export Dump = M.p
 
 export Graphics = love.graphics
 export Window = love.window

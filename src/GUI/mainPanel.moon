@@ -75,11 +75,15 @@ main.create = (self,loveF, centerArea) ->
     \SetSize 225, 50
     \SetPos centerArea[1] + 10, centerArea[2] + 60
     \SetLayoutType "horizontal"
+
   self.dieType = loveF.Create "multichoice", main
   with self.dieType
     \SetPos centerArea[1] + 65, centerArea[2] + 75
     \SetSize 165, 30
     \SetChoice "Choose a die"
+    .OnChoiceSelected = (obj, x, y) ->
+      Sounds.dieShake\play!
+
   dieImage = loveF.Create "image", main
   with dieImage
     \SetImage "res/die.png"
@@ -96,6 +100,7 @@ main.create = (self,loveF, centerArea) ->
     \SetPos centerArea[1] + 10, centerArea[2] + 120
     \SetLayoutType "horizontal"
   self.numberboxD = loveF.Create "numberbox", main
+
   with self.numberboxD
     \SetPos centerArea[1] + 15, centerArea[2] + 135
     \SetSize 215, 30

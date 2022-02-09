@@ -1,6 +1,6 @@
 export Data = {
   characters: {
-    "Default"
+    "You"
   },
   dieTypes: {
     "None",

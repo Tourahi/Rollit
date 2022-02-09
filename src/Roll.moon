@@ -23,10 +23,10 @@ Rollit = (inputs, loveF, centerArea) ->
     return
 
   if characterName == ""
-    logStr = logStr.."Default".. " rolled : "..tostring(numberOfDices).." "..dieType.." + "..modifier
+    logStr = logStr.."You".. " rolled : "..tostring(numberOfDices)..""..dieType.." + "..modifier
     res += modifier
   else
-    logStr = logStr..characterName.. " rolled "..tostring(numberOfDices).." "..dieType.." + "..modifier
+    logStr = logStr..characterName.. " rolled "..tostring(numberOfDices)..""..dieType.." + "..modifier
     res += modifier
 
   if primAttribName ~= "None" and primAttribName ~= ""
@@ -43,5 +43,7 @@ Rollit = (inputs, loveF, centerArea) ->
 
   inputs.logClist\AddRow logStr, "        "..res
   inputs.logClist\SetAllRowsFont Graphics.newFont(15)
+  if numberOfDices == 1 then Sounds.oneDie\play!
+  elseif numberOfDices > 1 then Sounds.multiDie\play!
 
 Rollit

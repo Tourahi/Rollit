@@ -31,7 +31,7 @@ function newobject:initialize()
 	self.internal = false
 	self.choices = {}
 	self.listheight = nil
-	
+
 	self:SetDrawFunc()
 end
 
@@ -43,36 +43,36 @@ function newobject:update(dt)
 
 	local state = loveframes.state
 	local selfstate = self.state
-	
+
 	if state ~= selfstate then
 		return
 	end
-	
+
 	local visible = self.visible
 	local alwaysupdate = self.alwaysupdate
-	
+
 	if not visible then
 		if not alwaysupdate then
 			return
 		end
 	end
-	
+
 	local parent = self.parent
 	local base = loveframes.base
 	local update = self.Update
-	
+
 	self:CheckHover()
-	
+
 	-- move to parent if there is a parent
 	if parent ~= base then
 		self.x = self.parent.x + self.staticx
 		self.y = self.parent.y + self.staticy
 	end
-	
+
 	if update then
 		update(self, dt)
 	end
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -80,24 +80,24 @@ end
 	- desc: called when the player presses a mouse button
 --]]---------------------------------------------------------
 function newobject:mousepressed(x, y, button)
-	
+
 	local state = loveframes.state
 	local selfstate = self.state
-	
+
 	if state ~= selfstate then
 		return
 	end
-	
+
 	local visible = self.visible
-	
+
 	if not visible then
 		return
 	end
-	
+
 	local hover = self.hover
 	local haslist = self.haslist
 	local enabled = self.enabled
-	
+
 	if hover and not haslist and enabled and button == 1 then
 		local baseparent = self:GetBaseParent()
 		if baseparent and baseparent.type == "frame" then
@@ -116,16 +116,16 @@ end
 	- desc: called when the player releases a mouse button
 --]]---------------------------------------------------------
 function newobject:mousereleased(x, y, button)
-	
+
 	local state = loveframes.state
 	local selfstate = self.state
-	
+
 	if state ~= selfstate then
 		return
 	end
-	
+
 	local visible = self.visible
-	
+
 	if not visible then
 		return
 	end
@@ -140,29 +140,29 @@ function newobject:AddChoice(choice)
 
 	local choices = self.choices
 	table.insert(choices, choice)
-	
+
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
 	- func: RemoveChoice(choice)
-	- desc: removes the specified choice from the object's 
+	- desc: removes the specified choice from the object's
 			list of choices
 --]]---------------------------------------------------------
 function newobject:RemoveChoice(choice)
-	
+
 	local choices = self.choices
-	
+
 	for k, v in ipairs(choices) do
 		if v == choice then
 			table.remove(choices, k)
 			break
 		end
 	end
-	
+
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -173,7 +173,7 @@ function newobject:SetChoice(choice)
 
 	self.choice = choice
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -183,19 +183,19 @@ end
 function newobject:SelectChoice(choice)
 
 	local onchoiceselected = self.OnChoiceSelected
-	
+
 	self.choice = choice
-	
+
 	if self.list then
 		self.list:Close()
 	end
-	
+
 	if onchoiceselected then
 		onchoiceselected(self, choice)
 	end
-	
+
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -206,7 +206,7 @@ function newobject:SetListHeight(height)
 
 	self.listheight = height
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -217,7 +217,7 @@ function newobject:SetPadding(padding)
 
 	self.listpadding = padding
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -228,7 +228,7 @@ function newobject:SetSpacing(spacing)
 
 	self.listspacing = spacing
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -238,7 +238,7 @@ end
 function newobject:GetValue()
 
 	return self.choice
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -248,7 +248,7 @@ end
 function newobject:GetChoice()
 
 	return self.choice
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -259,7 +259,7 @@ function newobject:SetText(text)
 
 	self.text = text
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -269,7 +269,7 @@ end
 function newobject:GetText()
 
 	return self.text
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -281,7 +281,7 @@ function newobject:SetButtonScrollAmount(amount)
 
 	self.buttonscrollamount = amount
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -292,7 +292,7 @@ end
 function newobject:GetButtonScrollAmount()
 
 	return self.buttonscrollamount
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -303,7 +303,7 @@ function newobject:SetMouseWheelScrollAmount(amount)
 
 	self.mousewheelscrollamount = amount
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -313,7 +313,7 @@ end
 function newobject:GetButtonScrollAmount()
 
 	return self.mousewheelscrollamount
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -325,7 +325,7 @@ function newobject:SetDTScrolling(bool)
 
 	self.dtscrolling = bool
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -336,7 +336,7 @@ end
 function newobject:GetDTScrolling()
 
 	return self.dtscrolling
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -346,15 +346,15 @@ end
 function newobject:Sort(func)
 
 	local default = self.sortfunc
-	
+
 	if func then
 		table.sort(self.choices, func)
 	else
 		table.sort(self.choices, default)
 	end
-	
+
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -365,7 +365,7 @@ function newobject:SetSortFunction(func)
 
 	self.sortfunc = func
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -375,7 +375,7 @@ end
 function newobject:GetSortFunction()
 
 	return self.sortfunc
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -388,9 +388,9 @@ function newobject:Clear()
 	self.choices = {}
 	self.choice = ""
 	self.text = "Select an option"
-	
+
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -401,7 +401,7 @@ function newobject:SetEnabled(bool)
 
 	self.enabled = bool
 	return self
-	
+
 end
 
 --[[---------------------------------------------------------
@@ -411,7 +411,7 @@ end
 function newobject:GetEnabled()
 
 	return self.enabled
-	
+
 end
 
 ---------- module end ----------
