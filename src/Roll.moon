@@ -7,9 +7,13 @@ Rollit = (inputs, loveF, centerArea) ->
   primAttribValue = tonumber inputs.modifP\GetValue!
   secAttribName =  inputs.attribSec\GetChoice!
   secAttribValue = tonumber inputs.modifS\GetValue!
-  modifier = tonumber inputs.numberboxModi\GetValue!
+  modifier = inputs.numberboxModi\GetValue!
   res = 0
   logStr = ""
+
+  if tonumber(modifier) >= 0
+    modifier = "+"..modifier
+
   if dieType == "None" or dieType == ""
     error loveF, centerArea, "You must choose the type of the die."
     return
@@ -23,11 +27,9 @@ Rollit = (inputs, loveF, centerArea) ->
     return
 
   if characterName == ""
-    logStr = logStr.."You".. " rolled : "..tostring(numberOfDices)..""..dieType.." + "..modifier
-    res += modifier
+    logStr = logStr.."You".. " rolled : "..tostring(numberOfDices)..""..dieType .. modifier
   else
-    logStr = logStr..characterName.. " rolled "..tostring(numberOfDices)..""..dieType.." + "..modifier
-    res += modifier
+    logStr = logStr..characterName.. " rolled "..tostring(numberOfDices)..""..dieType ..modifier
 
   if primAttribName ~= "None" and primAttribName ~= ""
     logStr = logStr.." + "..primAttribName.."("..primAttribValue..")"
@@ -36,10 +38,8 @@ Rollit = (inputs, loveF, centerArea) ->
   if secAttribName ~= "None" and secAttribName ~= ""
     logStr = logStr.." + "..secAttribName.."("..secAttribValue..")"
     res += secAttribValue
-
-  for i = 1, numberOfDices
-    res += Die\roll dieType
-
+  
+  res += Die\roll numberOfDices .. dieType .. modifier
 
   inputs.logClist\AddRow logStr, "        "..res
   inputs.logClist\SetAllRowsFont Graphics.newFont(15)

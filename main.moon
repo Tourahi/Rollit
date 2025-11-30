@@ -1,6 +1,8 @@
 assert require 'src/Dependencies'
 loveframes = assert require 'lib/loveframes'
 
+export DEBUG_ENABLED = false
+
 with love
   .load = (args) ->
     Graphics.setDefaultFilter 'nearest', 'nearest'

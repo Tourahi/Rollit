@@ -20,3 +20,4 @@ addCharacter = (name, characterChoices) ->
   :loadMultichoice
   :addCharacter
 }
+
