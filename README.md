@@ -1,4 +1,4 @@
-# Rollit
+# Rollit V2 [Valor]
 
 Rollit is a dice roller for dnd or dnd like fantasy tabletop role-playing games.
 
