@@ -17,7 +17,7 @@ toolbox.create = (loveF,width) ->
       {colors: Colors.chocolate},
       "Rollit : ",
       {colors: Colors.skyblue},
-      "v1.0 (Alpha)"
+      "v2.0 [Valor]"
     }
   themesList = loveF.Create "multichoice", panel
   with themesList
