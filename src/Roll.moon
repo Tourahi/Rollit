@@ -1,5 +1,5 @@
 error = assert require "src/GUI/error"
-Rollit = (inputs, loveF, centerArea) ->
+Rollit = (inputs, loveF, centerArea, context) ->
   characterName = inputs.characterChoices\GetChoice!
   dieType = inputs.dieType\GetChoice!
   numberOfDices = tonumber inputs.numberboxD\GetValue!
@@ -40,7 +40,11 @@ Rollit = (inputs, loveF, centerArea) ->
     res += secAttribValue
   
   res += Die\roll numberOfDices .. dieType .. modifier
-
+  if LOG
+    if context != nil and context != ""
+      if context != roleCtxPlaceHolder
+        LOG.info "Context : " .. context
+    LOG.info logStr .. " = " .. res .. "\n"
   inputs.logClist\AddRow logStr, "        "..res
   inputs.logClist\SetAllRowsFont Graphics.newFont(15)
   if numberOfDices == 1 then Sounds.oneDie\play!

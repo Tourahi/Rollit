@@ -1,9 +1,9 @@
 loader = assert require 'src/DataLoaders'
 
-addCharacter = (loveF, centerArea, characterChoices) ->
+logFile = (loveF, centerArea) ->
   frame = loveF.Create "frame"
   with frame
-    \SetName "Add Character"
+    \SetName "Logs location"
     \SetSize 250, 90
     \CenterWithinArea unpack centerArea
 
@@ -11,17 +11,19 @@ addCharacter = (loveF, centerArea, characterChoices) ->
   with nameInput
     \SetPos 5, 30
     \SetWidth 240
+  if LOG
+    if LOG.logFileName! != nil
+      nameInput\SetText LOG.logFileName!
 
   addBtn = loveF.Create "button", frame
   with addBtn
     \SetPos 5, 60
     \SetWidth 240
-    \SetText "Add"
+    \SetText "Save"
     .OnClick = (obj, x, y) ->
       if nameInput\GetText! ~= ""
-        loader.addCharacter nameInput\GetText!, characterChoices
+        loader.setLogFile nameInput\GetText!
         frame\Remove!
 
 
-addCharacter
-
+logFile

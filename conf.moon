@@ -2,10 +2,10 @@ with love
   .conf = (t) ->
     t.title = "Rollit"
     t.author = "Tourahi"
-    t.version = "11.3"
+    t.version = "11.5"
     t.window.width = 800
     t.window.height = 450
-    t.console           = true
+    t.console           = false
     t.modules.joystick  = false
     t.modules.audio     = true
     t.modules.keyboard  = true

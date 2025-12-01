@@ -1,10 +1,12 @@
+export LOG = assert require 'lib/log'
 assert require 'src/Dependencies'
 loveframes = assert require 'lib/loveframes'
 
 export DEBUG_ENABLED = false
+LOG.setShowFileInfo false
 
 with love
-  .load = (args) ->
+  .load = (args) -> 
     Graphics.setDefaultFilter 'nearest', 'nearest'
     G_stateMachine\change 'debug', {
       loveframes: loveframes
@@ -41,6 +43,8 @@ with love
     if key == "f1"
       debug = loveframes.config["DEBUG"]
       loveframes.config["DEBUG"] = not debug
+    elseif key == "escape"
+      love.event.quit!
 
   .textinput = (text) ->
     loveframes.textinput text

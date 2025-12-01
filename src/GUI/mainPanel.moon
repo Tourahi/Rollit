@@ -4,7 +4,10 @@ main = {}
 
 --
 addCharacter = assert require 'src/GUI/addCharacter'
+logFileSetter = assert require 'src/GUI/logFile'
 
+handCursor = love.mouse.getSystemCursor "hand"
+export roleCtxPlaceHolder = "Role context..."
 
 main.create = (self,loveF, centerArea) ->
   main = loveF.Create "panel"
@@ -22,7 +25,7 @@ main.create = (self,loveF, centerArea) ->
   promptFormX =  centerArea[1] + 10 + 230
   promptFormY =  centerArea[2]
   promptFormW =  550
-  promptFormH =  390
+  promptFormH =  355
   with promptForm
     \SetName "Log"
     \SetSize promptFormW, promptFormH
@@ -61,12 +64,10 @@ main.create = (self,loveF, centerArea) ->
     \SetSize 45, 30
     \SetPos centerArea[1] + 15, centerArea[2] + 15
   loader.loadMultichoice self.characterChoices, Data.characters
+  
+
   addCharBtn.OnClick = (obj, x, y) ->
     addCharacter loveF, centerArea, self.characterChoices
-
-
-
-
 
   -- Die Type
   dieForm = loveF.Create "form", main
@@ -158,20 +159,43 @@ main.create = (self,loveF, centerArea) ->
   clearBtn = loveF.Create "button", main
   with clearBtn
     \SetText "Clear"
-    \SetSize 45, 30
+    \SetSize 43, 30
     \SetPos centerArea[1] + 10, centerArea[2] + 360
     .OnClick = (objs) ->
       self.logClist\Clear!
 
+  -- Role Context
+  roleCtx = loveF.Create "textinput", frame
+  with roleCtx
+    \SetSize 540, 30
+    \SetPos centerArea[1] + 240, centerArea[2] + 395
+  if roleCtx\GetText! == nil or roleCtx\GetText! == ""
+    roleCtx\SetText roleCtxPlaceHolder
+
+  clearRoleCtx = loveF.Create "button", main
+  with clearRoleCtx
+    \SetText ""
+    \SetSize 10, 30
+    \SetPos centerArea[1] + 782, centerArea[2] + 360
+    .OnClick = (objs) ->
+      roleCtx\SetText ""
+
   rollBtn = loveF.Create "button", main
   with rollBtn
     \SetText "Roll"
-    \SetSize 175, 30
-    \SetPos centerArea[1] + 60, centerArea[2] + 360
+    \SetSize 132, 30
+    \SetPos centerArea[1] + 57, centerArea[2] + 360
     .OnClick = (objs) ->
-      Rollit self, loveF, centerArea
-
-
+      Rollit self, loveF, centerArea, roleCtx\GetText!
+  
+  -- Logs
+  logsBtn = loveF.Create "button", main
+  with logsBtn
+    \SetText "Logs"
+    \SetSize 43, 30
+    \SetPos centerArea[1] + 193, centerArea[2] + 360
+    .OnClick = (objs) ->
+      logFileSetter loveF, centerArea
 
 
 main

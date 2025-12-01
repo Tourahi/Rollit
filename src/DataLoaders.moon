@@ -15,9 +15,13 @@ addCharacter = (name, characterChoices) ->
   characterChoices\AddChoice name
 
 
+setLogFile = (path) ->
+  if LOG
+    LOG.logFileName path
 
 {
   :loadMultichoice
   :addCharacter
+  :setLogFile
 }
 
